@@ -5,14 +5,24 @@ const lb = () => {
   console.log('\n');
 };
 
-console.group('Day 1');
-const day01 = Puzzles.day01(Data.day01);
-console.log('Day 1:', day01);
-console.groupEnd();
-lb();
+// Get number of keys in object Puzzle
 
-console.group('Day 2');
-const day02 = Puzzles.day02(Data.day02);
-console.log('Day 2:', day02);
-console.groupEnd();
-lb();
+
+
+
+
+// Loop through each day
+for (let day = 1; day <= Object.keys(Puzzles).length; day++) {
+  console.group('Day ' + day);
+  let dayString = 'day' + (('00' + day).slice(-2));
+  if (Data.hasOwnProperty(dayString) && Puzzles.hasOwnProperty(dayString)) {
+    let data = Data[dayString];
+    let puzzle = Puzzles[dayString](data);
+    console.log('Results: ', puzzle);
+  }
+  else {
+    console.warn('No data or puzzle for day ' + day);
+  }
+  console.groupEnd();
+  lb();
+}
