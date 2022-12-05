@@ -1,13 +1,9 @@
 import Puzzles from './puzzles';
 import Data from './data';
 
-console.log(Puzzles);
-
 const lb = () => {
   console.log('\n');
 };
-
-// Get number of keys in object Puzzle
 
 // Loop through each day
 for (let day = 1; day <= Object.keys(Puzzles).length; day++) {

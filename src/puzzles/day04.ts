@@ -1,15 +1,7 @@
-import {Solution} from '../types';
-interface Elf {
-  begin: number;
-  end: number;
-}
-interface ElfGroup {
-  elf1: Elf;
-  elf2: Elf;
-}
+import {Solution, Day4ElfGroup} from '../types';
 
-const getElfGroups = (data: string): ElfGroup[] => {
-  const elfGroups: Array<ElfGroup | null> = data.split('\n').map((line: string) => {
+const getElfGroups = (data: string): Day4ElfGroup[] => {
+  const elfGroups: Array<Day4ElfGroup | null> = data.split('\n').map((line: string) => {
     const matches: string[] | null= line.match(/(\d+)-(\d+),(\d+)-(\d+)/);
     if (matches) {
       return {
@@ -20,13 +12,13 @@ const getElfGroups = (data: string): ElfGroup[] => {
       return null;
     }
   });
-  return elfGroups.filter((group: ElfGroup | null) => group !== null) as ElfGroup[];
+  return elfGroups.filter((group: Day4ElfGroup | null) => group !== null) as Day4ElfGroup[];
 }
 
-const getPuzzle1 = (data: ElfGroup[]): number => {
+const getPuzzle1 = (data: Day4ElfGroup[]): number => {
   let total = 0;
 
-  data.forEach((group: ElfGroup) => {
+  data.forEach((group: Day4ElfGroup) => {
     // Check if Elf 1 fully contains Elf 2 or Elf 2 fully contains Elf 1
     if ((group.elf1.begin <= group.elf2.begin && group.elf1.end >= group.elf2.end) ||
         (group.elf2.begin <= group.elf1.begin && group.elf2.end >= group.elf1.end)) {
@@ -36,10 +28,10 @@ const getPuzzle1 = (data: ElfGroup[]): number => {
   return total;
 }
 
-const getPuzzle2 = (data: ElfGroup[]): number => {
+const getPuzzle2 = (data: Day4ElfGroup[]): number => {
   let total = 0;
 
-  data.forEach((group: ElfGroup) => {
+  data.forEach((group: Day4ElfGroup) => {
     // Check if range of Elf 1 overlaps with range of Elf 2
     if ((group.elf1.begin <= group.elf2.begin && group.elf1.end >= group.elf2.begin) ||
         (group.elf2.begin <= group.elf1.begin && group.elf2.end >= group.elf1.begin)) {
@@ -51,7 +43,7 @@ const getPuzzle2 = (data: ElfGroup[]): number => {
 }
 
 export default (dataSet: string): Solution => {
-  const elfGroups: ElfGroup[] = getElfGroups(dataSet);
+  const elfGroups: Day4ElfGroup[] = getElfGroups(dataSet);
 
   return { puzzle1: getPuzzle1(elfGroups), puzzle2: getPuzzle2(elfGroups) };
 }

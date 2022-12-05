@@ -1,15 +1,4 @@
-import {Solution} from '../types';
-
-type roundStatus = 'win' | 'lose' | 'draw' | 'unknown';
-
-interface Round {
-  opponent: string;
-  player: string;
-  puzzle1Status: roundStatus;
-  puzzle1Points: number;
-  puzzle2Player: string; //Use previous X,Y,Z
-  puzzle2Points: number;
-}
+import {Solution, RoundStatus, Round} from '../types';
 
 // Rock = A|X (1 Point)
 // Paper = B|Y (2 Points)
@@ -17,7 +6,7 @@ interface Round {
 // Draw = 3 Points
 // Win = 6 Points
 
-const getPuzzle1Status = (opponent: string, player: string): roundStatus => { 
+const getPuzzle1Status = (opponent: string, player: string): RoundStatus => { 
   //Player Wins
   if (player === 'X' && opponent === 'C') return 'win';
   if (player === 'Y' && opponent === 'A') return 'win';
@@ -57,7 +46,7 @@ const getPuzzle2Player = (opponent: string, status: string): string => {
   return 'unknown';
 }
 
-const getPoints = (player: string, status: roundStatus|string): number => { 
+const getPoints = (player: string, status: RoundStatus|string): number => { 
   let points = 0;
 
   //if statu is draw or Y points are 3
@@ -81,7 +70,7 @@ export default (dataSet: string): Solution => {
     const splitRound: string[] = round.split(' ');
     const opponent: string = splitRound[0];
     const player: string = splitRound[1];
-    const puzzle1Status: roundStatus = getPuzzle1Status(opponent, player);
+    const puzzle1Status: RoundStatus = getPuzzle1Status(opponent, player);
     const puzzle1Points: number = getPoints(player, puzzle1Status);
     const puzzle2Player: string = getPuzzle2Player(opponent, player);
     const puzzle2Points: number = getPoints(puzzle2Player, player);
