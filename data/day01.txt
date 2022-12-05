@@ -1,4 +1,4 @@
-const data:string = `20576
+20576
 21113
 1865
 
@@ -2248,6 +2248,4 @@ const data:string = `20576
 4695
 
 4894
-9624`;
-
-export default data;
+9624

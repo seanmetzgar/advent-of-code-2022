@@ -1,4 +1,4 @@
-const data:string = `CjhshBJCSrTTsLwqwqwb
+CjhshBJCSrTTsLwqwqwb
 GtmnFHlDfcpHbLZjtTTRLWwb
 fDfNHHjVFNvvrvVBJJdS
 PPWvWQjPhrPQwlMWJJdMDGbJTdCJ
@@ -297,6 +297,4 @@ ZBBsFPPrTgCpSSBwHrLtwbHbLLtzLf
 ZBZZssBdWRJgmgJdNn
 TTLChzhDnjQLTDhTQJrzSbbJHsGrGrGFGb
 BfvvpflfWVlVsFFvJHcFJFrJrt
-ZwMBwwZPWMMpffflqlZMRnRNQLCNhPhDDNssnRQD`;
-
-export default data;
+ZwMBwwZPWMMpffflqlZMRnRNQLCNhPhDDNssnRQD

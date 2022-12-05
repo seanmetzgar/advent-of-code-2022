@@ -1,8 +1,4 @@
-interface Day02 {
-  puzzle1?: number;
-  puzzle2?: number;
-  data?: Round[];
-}
+import {Solution} from '../types';
 
 type roundStatus = 'win' | 'lose' | 'draw' | 'unknown';
 
@@ -79,16 +75,16 @@ const getPoints = (player: string, status: roundStatus|string): number => {
 const getPointsTotalP1 = (data: Round[]): number => data.reduce((a, b) => a + b.puzzle1Points, 0);
 const getPointsTotalP2 = (data: Round[]): number => data.reduce((a, b) => a + b.puzzle2Points, 0);
 
-export default (dataSet: string): Day02 => {
-  let splitData: string[] = dataSet.split('\n');
-  let rounds: Round[] = splitData.map((round: string) => {
-    let splitRound: string[] = round.split(' ');
-    let opponent: string = splitRound[0];
-    let player: string = splitRound[1];
-    let puzzle1Status: roundStatus = getPuzzle1Status(opponent, player);
-    let puzzle1Points: number = getPoints(player, puzzle1Status);
-    let puzzle2Player: string = getPuzzle2Player(opponent, player);
-    let puzzle2Points: number = getPoints(puzzle2Player, player);
+export default (dataSet: string): Solution => {
+  const splitData: string[] = dataSet.split('\n');
+  const rounds: Round[] = splitData.map((round: string) => {
+    const splitRound: string[] = round.split(' ');
+    const opponent: string = splitRound[0];
+    const player: string = splitRound[1];
+    const puzzle1Status: roundStatus = getPuzzle1Status(opponent, player);
+    const puzzle1Points: number = getPoints(player, puzzle1Status);
+    const puzzle2Player: string = getPuzzle2Player(opponent, player);
+    const puzzle2Points: number = getPoints(puzzle2Player, player);
     return { 
       opponent: opponent, 
       player: player, 
@@ -98,7 +94,7 @@ export default (dataSet: string): Day02 => {
       puzzle2Points: puzzle2Points
    };
   });
-  let pointsTotalP1: number = getPointsTotalP1(rounds);
-  let pointsTotalP2: number = getPointsTotalP2(rounds);
+  const pointsTotalP1: number = getPointsTotalP1(rounds);
+  const pointsTotalP2: number = getPointsTotalP2(rounds);
   return { puzzle1: pointsTotalP1, puzzle2: pointsTotalP2 };
 }
