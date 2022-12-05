@@ -41,8 +41,22 @@ const getPuzzle1 = (data: ElfGroup[]): number => {
   return total;
 }
 
+const getPuzzle2 = (data: ElfGroup[]): number => {
+  let total = 0;
+
+  data.forEach((group: ElfGroup) => {
+    // Check if range of Elf 1 overlaps with range of Elf 2
+    if ((group.elf1.begin <= group.elf2.begin && group.elf1.end >= group.elf2.begin) ||
+        (group.elf2.begin <= group.elf1.begin && group.elf2.end >= group.elf1.begin)) {
+      total++;
+    }
+  });
+
+  return total;
+}
+
 export default (dataSet: string): Day04 => {
   const elfGroups: ElfGroup[] = getElfGroups(dataSet);
 
-  return { puzzle1: getPuzzle1(elfGroups) };
+  return { puzzle1: getPuzzle1(elfGroups), puzzle2: getPuzzle2(elfGroups) };
 }
