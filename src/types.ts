@@ -6,7 +6,7 @@ export interface Puzzles {
 }
 
 export interface Solution {
-  puzzle1?: number;
+  puzzle1?: number | string;
   puzzle2?: number;
 }
 
