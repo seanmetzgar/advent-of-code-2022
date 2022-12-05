@@ -1,18 +1,4 @@
-import {Solution} from '../types';
-
-interface Data {
-  backpack: string;
-  compartment1: string;
-  compartment2: string;
-  sameItems: string;
-}
-
-interface Group {
-  elf1: string;
-  elf2: string;
-  elf3: string;
-  badge: string;
-}
+import {Solution, Day3Data, Day3Group} from '../types';
 
 const getSameItems = (compartment1: string, compartment2: string): string => {
   let sameItems = '';
@@ -38,13 +24,13 @@ const getBadge = (elf1: string, elf2: string, elf3: string): string => {
   return badge;
 }
 
-const getGroups = (data: Data[]): Group[] => {
-  const groups: Group[] = [];
+const getGroups = (data: Day3Data[]): Day3Group[] => {
+  const groups: Day3Group[] = [];
   if (data.length % 3 === 0) {
     let elf1 = '';
     let elf2 = '';
     let elf3 = '';
-    data.forEach((d: Data, i: number) => {
+    data.forEach((d: Day3Data, i: number) => {
       if (i % 3 === 0) {
         elf1 = d.backpack;
       } else if (i % 3 === 1) { 
@@ -58,9 +44,9 @@ const getGroups = (data: Data[]): Group[] => {
   return groups;
 }
 
-const parseData = (dataSet: string): Data[] => {
+const parseData = (dataSet: string): Day3Data[] => {
   const backpacks: string[] = dataSet.split('\n');
-  const data: Data[] = backpacks.map((backpack: string) => {
+  const data: Day3Data[] = backpacks.map((backpack: string) => {
     const splicePoint: number = Math.ceil(backpack.length / 2);
     const compartment1: string = backpack.slice(0, splicePoint);
     const compartment2: string = backpack.slice(splicePoint);
@@ -75,7 +61,7 @@ const parseData = (dataSet: string): Data[] => {
 }
 
 export default (dataSet: string): Solution => {
-  const data: Data[] = parseData(dataSet);
+  const data: Day3Data[] = parseData(dataSet);
   let puzzle1 = 0;
   let puzzle2 = 0;
 
@@ -92,7 +78,7 @@ export default (dataSet: string): Solution => {
         puzzle1 = puzzle1 + code;
     }
   }
-  const groups: Group[] = getGroups(data);
+  const groups: Day3Group[] = getGroups(data);
   for(const group of groups) {
     for(const item of group.badge) {
         let code: number = item.charCodeAt(0);
@@ -109,8 +95,3 @@ export default (dataSet: string): Solution => {
 
   return { puzzle1: puzzle1, puzzle2: puzzle2 };
 }
-
-
-
-
-
