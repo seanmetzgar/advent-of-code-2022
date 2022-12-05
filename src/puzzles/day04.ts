@@ -1,9 +1,4 @@
-interface Day04 {
-  puzzle1?: number;
-  puzzle2?: number;
-  data?: ElfGroup[];
-}
-
+import {Solution} from '../types';
 interface Elf {
   begin: number;
   end: number;
@@ -55,7 +50,7 @@ const getPuzzle2 = (data: ElfGroup[]): number => {
   return total;
 }
 
-export default (dataSet: string): Day04 => {
+export default (dataSet: string): Solution => {
   const elfGroups: ElfGroup[] = getElfGroups(dataSet);
 
   return { puzzle1: getPuzzle1(elfGroups), puzzle2: getPuzzle2(elfGroups) };

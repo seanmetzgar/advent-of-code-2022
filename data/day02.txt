@@ -1,4 +1,4 @@
-const data:string = `A Z
+A Z
 C X
 A Z
 A Z
@@ -2497,6 +2497,4 @@ A Z
 A Z
 A Z
 A Z
-A Z`;
-
-export default data;
+A Z
