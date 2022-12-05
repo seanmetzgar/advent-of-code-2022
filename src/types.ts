@@ -7,7 +7,7 @@ export interface Puzzles {
 
 export interface Solution {
   puzzle1?: number | string;
-  puzzle2?: number;
+  puzzle2?: number | string;
 }
 
 //Day 2 Specific
