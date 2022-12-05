@@ -55,24 +55,23 @@ const getStacks = (stacksRaw: string): Array<string[]> => {
   return columns;
 }
 
-export default (dataSet: string): Solution => {
-
-  const data = dataSet.split('\n\n');
-  const stacks = getStacks(data[0]);
-  const moves = getMoves(data[1]);
-
+const getSolution = (stacks: Array<string[]>, moves: Move[], puzzle2 = false): string => {
   moves.forEach((move: Move) => {
     const items = stacks[move.from].splice(stacks[move.from].length - move.items, move.items);
     //reverse the items so they are in the correct order when added to the new stack
-    items.reverse();
+    if (puzzle2 !== true) items.reverse();
     //add the items to the new stack
     stacks[move.to].push(...items);
   });
 
-  console.log(stacks);
-  // Get last item of each stack and convert to string
-  const result = stacks.map((stack: string[]) => stack[stack.length - 1]).join('');
-
-  return { puzzle1: result };
-
+  return stacks.map((stack: string[]) => stack[stack.length - 1] || ' ').join('');
 }
+
+export default (dataSet: string): Solution => {
+  const data = dataSet.split('\n\n');
+  const stacks1 = getStacks(data[0]);
+  const stacks2 = getStacks(data[0]);
+  const moves = getMoves(data[1]);
+
+  return { puzzle1: getSolution(stacks1, moves), puzzle2: getSolution(stacks2, moves, true) };
+} 
