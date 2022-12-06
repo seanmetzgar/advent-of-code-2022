@@ -1,4 +1,4 @@
-import {Solution, RoundStatus, Round} from '../types';
+import { Solution, RoundStatus, Round } from '../types';
 
 // Rock = A|X (1 Point)
 // Paper = B|Y (2 Points)
@@ -6,7 +6,7 @@ import {Solution, RoundStatus, Round} from '../types';
 // Draw = 3 Points
 // Win = 6 Points
 
-const getPuzzle1Status = (opponent: string, player: string): RoundStatus => { 
+const getPuzzle1Status = (opponent: string, player: string): RoundStatus => {
   //Player Wins
   if (player === 'X' && opponent === 'C') return 'win';
   if (player === 'Y' && opponent === 'A') return 'win';
@@ -21,7 +21,7 @@ const getPuzzle1Status = (opponent: string, player: string): RoundStatus => {
   if (player === 'Z' && opponent === 'C') return 'draw';
 
   return 'unknown';
-}
+};
 
 const getPuzzle2Player = (opponent: string, status: string): string => {
   //X = Lose
@@ -44,9 +44,9 @@ const getPuzzle2Player = (opponent: string, status: string): string => {
   if (status === 'Y' && opponent === 'C') return 'Z';
 
   return 'unknown';
-}
+};
 
-const getPoints = (player: string, status: RoundStatus|string): number => { 
+const getPoints = (player: string, status: RoundStatus | string): number => {
   let points = 0;
 
   //if statu is draw or Y points are 3
@@ -58,11 +58,13 @@ const getPoints = (player: string, status: RoundStatus|string): number => {
   if (player === 'Z') points = points + 3;
 
   return points;
-}
+};
 
 //Get sum of all points
-const getPointsTotalP1 = (data: Round[]): number => data.reduce((a, b) => a + b.puzzle1Points, 0);
-const getPointsTotalP2 = (data: Round[]): number => data.reduce((a, b) => a + b.puzzle2Points, 0);
+const getPointsTotalP1 = (data: Round[]): number =>
+  data.reduce((a, b) => a + b.puzzle1Points, 0);
+const getPointsTotalP2 = (data: Round[]): number =>
+  data.reduce((a, b) => a + b.puzzle2Points, 0);
 
 export default (dataSet: string): Solution => {
   const splitData: string[] = dataSet.split('\n');
@@ -74,16 +76,16 @@ export default (dataSet: string): Solution => {
     const puzzle1Points: number = getPoints(player, puzzle1Status);
     const puzzle2Player: string = getPuzzle2Player(opponent, player);
     const puzzle2Points: number = getPoints(puzzle2Player, player);
-    return { 
-      opponent: opponent, 
-      player: player, 
-      puzzle1Status: puzzle1Status, 
+    return {
+      opponent: opponent,
+      player: player,
+      puzzle1Status: puzzle1Status,
       puzzle1Points: puzzle1Points,
       puzzle2Player: puzzle2Player,
-      puzzle2Points: puzzle2Points
-   };
+      puzzle2Points: puzzle2Points,
+    };
   });
   const pointsTotalP1: number = getPointsTotalP1(rounds);
   const pointsTotalP2: number = getPointsTotalP2(rounds);
   return { puzzle1: pointsTotalP1, puzzle2: pointsTotalP2 };
-}
+};

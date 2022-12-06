@@ -1,4 +1,4 @@
-import {Puzzles} from '../types';
+import { Puzzles } from '../types';
 
 import Day01 from './day01';
 import Day02 from './day02';

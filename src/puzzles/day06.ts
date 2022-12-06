@@ -9,4 +9,4 @@ const solve = (input: string, length = 4): number => {
 
 export default (dataSet: string): Solution => {
   return { puzzle1: solve(dataSet), puzzle2: solve(dataSet, 14) };
-} 
+}
