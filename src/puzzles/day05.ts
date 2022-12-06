@@ -1,4 +1,4 @@
-import {Solution} from '../types';
+import { Solution } from '../types';
 
 interface Move {
   items: number;
@@ -7,22 +7,26 @@ interface Move {
 }
 
 const getMoves = (movesRaw: string): Move[] => {
-  const moves: Move[] = movesRaw.split('\n').map((move: string) => {
-    const matches: string[] | null = move.match(/move (\d+) from (\d+) to (\d+)/);
-    if (matches) {
-      return {
-        items: parseInt(matches[1]),
-        from: parseInt(matches[2]) - 1,
-        to: parseInt(matches[3]) - 1
-      };
-    } else {
-      return null;
-    }
-  }
-  ).filter((move: Move | null) => move !== null) as Move[];
+  const moves: Move[] = movesRaw
+    .split('\n')
+    .map((move: string) => {
+      const matches: string[] | null = move.match(
+        /move (\d+) from (\d+) to (\d+)/,
+      );
+      if (matches) {
+        return {
+          items: parseInt(matches[1]),
+          from: parseInt(matches[2]) - 1,
+          to: parseInt(matches[3]) - 1,
+        };
+      } else {
+        return null;
+      }
+    })
+    .filter((move: Move | null) => move !== null) as Move[];
 
   return moves;
-}
+};
 const getStacks = (stacksRaw: string): Array<string[]> => {
   const stacksData = stacksRaw.split('\n');
   stacksData.pop();
@@ -45,27 +49,35 @@ const getStacks = (stacksRaw: string): Array<string[]> => {
     for (let j = 0; j < rows[i].length; j++) {
       if (columns[j]) {
         if (rows[i][j] != '') columns[j].push(rows[i][j]);
-      }
-      else {
+      } else {
         if (rows[i][j] != '') columns[j] = [rows[i][j]];
       }
     }
   }
 
   return columns;
-}
+};
 
-const getSolution = (stacks: Array<string[]>, moves: Move[], puzzle2 = false): string => {
+const getSolution = (
+  stacks: Array<string[]>,
+  moves: Move[],
+  puzzle2 = false,
+): string => {
   moves.forEach((move: Move) => {
-    const items = stacks[move.from].splice(stacks[move.from].length - move.items, move.items);
+    const items = stacks[move.from].splice(
+      stacks[move.from].length - move.items,
+      move.items,
+    );
     //reverse the items so they are in the correct order when added to the new stack
     if (puzzle2 !== true) items.reverse();
     //add the items to the new stack
     stacks[move.to].push(...items);
   });
 
-  return stacks.map((stack: string[]) => stack[stack.length - 1] || ' ').join('');
-}
+  return stacks
+    .map((stack: string[]) => stack[stack.length - 1] || ' ')
+    .join('');
+};
 
 export default (dataSet: string): Solution => {
   const data = dataSet.split('\n\n');
@@ -73,5 +85,8 @@ export default (dataSet: string): Solution => {
   const stacks2 = getStacks(data[0]);
   const moves = getMoves(data[1]);
 
-  return { puzzle1: getSolution(stacks1, moves), puzzle2: getSolution(stacks2, moves, true) };
-} 
+  return {
+    puzzle1: getSolution(stacks1, moves),
+    puzzle2: getSolution(stacks2, moves, true),
+  };
+};
