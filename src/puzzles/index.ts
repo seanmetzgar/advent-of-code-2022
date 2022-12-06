@@ -13,5 +13,5 @@ export default {
   day03: Day03,
   day04: Day04,
   day05: Day05,
-  day06: Day06,
-} as Puzzles;
+  day06: Day06
+} as Puzzles
