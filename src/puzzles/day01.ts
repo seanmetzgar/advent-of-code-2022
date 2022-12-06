@@ -1,6 +1,7 @@
-import {Solution} from '../types';
+import { Solution } from '../types';
 
-const getSums = (data: Array<number[]>): number[] => data.map((group: number[]) => group.reduce((a, b) => a + b));
+const getSums = (data: Array<number[]>): number[] =>
+  data.map((group: number[]) => group.reduce((a, b) => a + b));
 
 const getLargest = (sums: number[]): number => Math.max(...sums);
 
@@ -17,9 +18,9 @@ const getNLargest = (sums: number[], n = 1): number[] => {
 };
 
 export default (dataSet: string): Solution => {
-  const data: Array<number[]> = dataSet.split('\n\n').map((numbers:string) => {
-    return numbers.split('\n').map((number:string) => {
-        return parseInt(number);
+  const data: Array<number[]> = dataSet.split('\n\n').map((numbers: string) => {
+    return numbers.split('\n').map((number: string) => {
+      return parseInt(number);
     });
   });
   const sums: number[] = getSums(data);
@@ -28,9 +29,4 @@ export default (dataSet: string): Solution => {
   const sumLargest3: number = largest3.reduce((a, b) => a + b);
 
   return { puzzle1: largest, puzzle2: sumLargest3 };
-}
-
-
-
-
-
+};
