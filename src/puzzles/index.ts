@@ -7,6 +7,7 @@ import Day04 from './day04';
 import Day05 from './day05';
 import Day06 from './day06';
 import Day07 from './day07';
+import Day08 from './day08';
 
 export default {
   day01: Day01,
@@ -16,4 +17,5 @@ export default {
   day05: Day05,
   day06: Day06,
   day07: Day07,
+  day08: Day08,
 } as Puzzles;
