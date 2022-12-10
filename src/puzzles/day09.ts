@@ -42,12 +42,14 @@ const getTailCounts = (motions: Motion[]): Solution => {
           break;
       }
       currentTail = moveKnot(currentHead, currentTail);
+
       for (let j = 0; j < followers.length; j++) {
         followers[j] =
           j == 0
             ? moveKnot(currentHead, followers[j])
             : moveKnot(followers[j - 1], followers[j]);
       }
+      
       tailTracker.push({ x: currentTail.x, y: currentTail.y });
       tailTracker2.push({ x: followers[8].x, y: followers[8].y });
     }
@@ -81,12 +83,14 @@ const moveKnot = (moved: Position, moving: Position): Position => {
     if (moved.y > moving.y + 1) {
       moving.y++;
       moving.x++;
+
       while (moved.y > moving.y + 1) {
         moving.y++;
       }
     } else if (moved.y < moving.y - 1) {
       moving.y--;
       moving.x++;
+
       while (moved.y < moving.y - 1) {
         moving.y--;
       }
@@ -95,12 +99,14 @@ const moveKnot = (moved: Position, moving: Position): Position => {
     if (moved.y > moving.y + 1) {
       moving.y++;
       moving.x--;
+
       while (moved.y > moving.y + 1) {
         moving.y++;
       }
     } else if (moved.y < moving.y - 1) {
       moving.y--;
       moving.x--;
+
       while (moved.y < moving.y - 1) {
         moving.y--;
       }
@@ -109,12 +115,14 @@ const moveKnot = (moved: Position, moving: Position): Position => {
     if (moved.x > moving.x + 1) {
       moving.x++;
       moving.y++;
+
       while (moved.x > moving.x + 1) {
         moving.x++;
       }
     } else if (moved.x < moving.x - 1) {
       moving.x--;
       moving.y++;
+
       while (moved.x < moving.x - 1) {
         moving.x--;
       }
@@ -123,12 +131,14 @@ const moveKnot = (moved: Position, moving: Position): Position => {
     if (moved.x > moving.x + 1) {
       moving.x++;
       moving.y--;
+
       while (moved.x > moving.x + 1) {
         moving.x++;
       }
     } else if (moved.x < moving.x - 1) {
       moving.x--;
       moving.y--;
+
       while (moved.x < moving.x - 1) {
         moving.x--;
       }
