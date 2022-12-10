@@ -49,7 +49,7 @@ const getTailCounts = (motions: Motion[]): Solution => {
             ? moveKnot(currentHead, followers[j])
             : moveKnot(followers[j - 1], followers[j]);
       }
-      
+
       tailTracker.push({ x: currentTail.x, y: currentTail.y });
       tailTracker2.push({ x: followers[8].x, y: followers[8].y });
     }
