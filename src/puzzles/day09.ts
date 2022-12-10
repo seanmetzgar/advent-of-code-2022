@@ -36,11 +36,8 @@ const getTailCounts = (motions: Motion[]): Solution => {
           break;
       }
       currentTail = moveKnot(currentHead, currentTail);
-      console.log('H', currentHead);
       for (let j = 0; j < followers.length; j++) {
-        console.log(j, followers[j]);
         followers[j] = (j==0) ? moveKnot(currentHead, followers[j]) : moveKnot(followers[j-1], followers[j]);
-        console.log(followers[j]);
       }
       tailTracker.push({x: currentTail.x, y: currentTail.y});
       tailTracker2.push({x: followers[8].x, y: followers[8].y});
