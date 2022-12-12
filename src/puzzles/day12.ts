@@ -49,10 +49,12 @@ const pathfinder = (
           ) {
             const distance = currentPoint.distance + 1;
             if (
-              (possiblePoint.position.x == 0 &&
+              (possiblePoint.position.x == start.x &&
                 possiblePoint.position.y == start.y) ||
-              (puzzle2 && possiblePoint.position.x == 0)
+              (puzzle2 && possiblePoint.height == 1)
             ) {
+
+              console.log(possiblePoint);
               return distance;
             } else {
               possiblePoint.visited = true;
