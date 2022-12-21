@@ -12,6 +12,7 @@ import Day09 from './day09';
 import Day10 from './day10';
 import Day11 from './day11';
 import Day12 from './day12';
+import Day13 from './day13';
 
 export default {
   day01: Day01,
@@ -26,4 +27,5 @@ export default {
   day10: Day10,
   day11: Day11,
   day12: Day12,
+  day13: Day13,
 } as Puzzles;
